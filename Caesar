@@ -1,0 +1,19 @@
+def caesar_cipher(string, shift_num)
+
+letters = string.split("")
+index_nums = letters.chars.map! { |i| i.ord }
+new_string = index_nums.map! do |i|
+
+    if i<= 90 && i >= 65
+      ( ( (i - 65 + shift_num) % 26 ) + 65).chr
+    elsif i<= 122 && i >= 97
+      ( ( (i - 97 + shift_num) % 26 ) + 97).chr
+    else
+      i.chr
+    end
+  end
+
+  puts new_string.join
+end
+
+caesar_cipher("Pb uhdo qdph lv Grqdog Gxfn", -3)
