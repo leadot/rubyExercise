@@ -1,0 +1,80 @@
+require 'date'
+
+class ShoppingCart
+
+  def initialize
+    @default_price = 0
+    @items=[]
+  end
+
+  def add_item(item)
+     @items << item
+end
+  def
+  item_counter
+  		@items.length
+  	end
+
+  	def checkout
+  		total_price = @default_price
+        @items.each do |item|
+
+      if item_counter <= 5
+    		total_price += item.price
+    		else
+    		total_price = item.price * 0.95 + total_price
+			end
+		end
+	puts "Your total today is #{total_price}!"
+	end
+end
+
+class Item
+attr_reader :name, :price
+  def initialize(name,price)
+    @name=name
+    @price=price
+  end
+
+  def price
+    price = @price
+  end
+end
+
+
+class Housewares < Item
+  attr_reader :price
+  def price
+    if @price > 100
+       @price *= 0.95
+      else
+        @price
+      end
+  end
+end
+
+class Fruit < Item
+  attr_reader :price
+  def price
+    if Date.today.strftime("%A") == "Saturday"
+     @price *= 0.9
+  else
+    @price
+  end
+  end
+end
+
+person_cart = ShoppingCart.new
+banana = Fruit.new("banana", 10)
+orange_juice = Item.new("orange juice", 10)
+rice = Item.new("rice", 1)
+anchovies = Item.new("anchovies", 2)
+vacuum_cleaner = Housewares.new("vacuum cleaner", 150)
+
+person_cart.add_item(orange_juice)
+person_cart.add_item(rice)
+person_cart.add_item(banana)
+person_cart.add_item(anchovies)
+person_cart.add_item(vacuum_cleaner)
+
+person_cart.checkout
